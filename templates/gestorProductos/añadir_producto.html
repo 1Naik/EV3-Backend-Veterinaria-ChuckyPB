@@ -1,0 +1,21 @@
+{% extends "base/base.html" %}
+
+{% block titulo %}
+    Añadir Producto
+{% endblock %}
+
+{% block contenido %}
+    <h1 class="h3 mb-5 text-gray-800 text-center">Formulario - Añadir Producto</h1>
+
+        
+    <form method="POST" class="col-8 offset-2 border-2 border border-info-secondary rounded p-4">
+        {{ form.as_p}}
+        {% csrf_token %}
+        <div class="d-grid mt-3">
+            <input type="submit" value="Añadir producto" class="btn btn-primary">
+            <a href="{% url 'productosData' %}" class="btn btn-primary mx-2">Ver listado de productos</a>
+        </div>
+            
+    </form>
+
+{% endblock %}

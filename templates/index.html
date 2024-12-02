@@ -1,0 +1,245 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+Smart Stock
+{% endblock %}
+
+{% block contenido %}
+{% if user.is_staff %}
+<!-- Aqui va el contenido del index que veria el administrador -->
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-center mb-4 bg-success py-5">
+    <h1 class="text-center h3 mb-0 text-white"><strong>Veterinaria Chucky PB</strong></h1>
+</div>
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
+    <h1 class="h3 mb-0 text-gray-800"><strong>Rol: Administrador</strong></h1>
+</div>
+
+<div class="row">
+    <!-- Ganancias Mensuales (Card) -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Ganancias totales (Mensual)</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$400.000</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ganancias Anuales (Card) -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Ganancias totales (Anual)</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$2.150.000</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            Mascotas atendidas</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">38</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dog fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-secondary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
+                            Estado de la veterinaria</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Abierta</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-store fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row">
+
+    <!-- Area Chart -->
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Ganancias mensuales</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="chart-area">
+                    <canvas id="myAreaChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pie Chart -->
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Tipo de mascotas revisadas</h6>
+                <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    </a>
+                </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="chart-pie pt-4 pb-2">
+                    <canvas id="myPieChart"></canvas>
+                </div>
+                <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                        <i class="fas fa-circle text-primary"></i> Perros
+                    </span>
+                    <span class="mr-2">
+                        <i class="fas fa-circle text-success"></i> Gatos
+                    </span>
+                    <span class="mr-2">
+                        <i class="fas fa-circle text-info"></i> Otros
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+<!-- Aqui va el contenido del index que veria un usuario normal -->
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-center mb-4 bg-success py-5">
+    <h1 class="text-center h3 mb-0 text-white"><strong>Veterinaria Chucky PB</strong></h1>
+</div>
+
+<br><br><br>
+
+<div class="container">
+    <h1 class="h3 mb-0 text-gray-800 text-center my-5">Quiénes Somos</h1>
+    <p style="text-align: justify;">
+        Clínica Veterinaria Chucky PB, servicio veterinario líder a nivel nacional respecto del cuidado integral de la
+        salud y
+        bienestar de las mascotas, sin perder de vista la práctica de una medicina honesta y humana, entregando una
+        atención
+        personalizada y eficiente, fundamentada en principios éticos y enfocándose siempre en tratamientos de
+        vanguardia.
+        Además de crear conciencia social para el bienestar animal, fortaleciendo el vínculo emocional que existe entre
+        las
+        personas y sus mascotas, mediante la prestación de nuestros servicios médicos veterinarios y complementarios.
+
+        Mejorar la calidad de vida de nuestros pacientes y sus familias atendiendo sus necesidades, creando las
+        condiciones
+        adecuadas de salud y bienestar, manteniendo una constante comunicación con los propietarios en pos del
+        mantenimiento
+        de
+        sus mascotas.
+    </p>
+</div>
+
+
+<br><br><br>
+
+<div class="row mt-5">
+    <div class="col-xl-12 col-md-12 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-header bg-success text-white text-center">
+                <h5> <strong>Galería de imagenes</strong></h5>
+            </div>
+            <div class="card-body">
+                <div class="row p-4 justify-content-center">
+                    <img src="{% static 'img/perro1.jpg' %}" class="img-thumbnail img-fluid mr-5" alt="..." height="100"
+                        width="300">
+                    <img src="{% static 'img/perro2.jpg' %}" class="img-thumbnail img-fluid mr-5" alt="..." height="100"
+                        width="300">
+                    <img src="{% static 'img/perro3.jpg' %}" class="img-thumbnail img-fluid mr-5" alt="..." height="100"
+                        width="300">
+                    <img src="{% static 'img/perro4.jpg' %}" class="img-thumbnail img-fluid mr-5" alt="..." height="100"
+                        width="300">
+                </div>
+                <div class="row p-4 justify-content-center">
+                    <img src="{% static 'img/perro5.jpg' %}" class="img-thumbnail img-fluid mr-5" alt="..." height="100"
+                        width="300">
+                    <img src="{% static 'img/perro6.jpg' %}" class="img-thumbnail img-fluid mr-5" alt="..." height="100"
+                        width="300">
+                    <img src="{% static 'img/perro7.jpeg' %}" class="img-thumbnail img-fluid mr-5" alt="..."
+                        height="100" width="300">
+                    <img src="{% static 'img/perro8.jpg' %}" class="img-thumbnail img-fluid mr-5" alt="..." height="100"
+                        width="300">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br><br>
+
+<div class="row mt-5">
+    <div class="col-xl-12 col-md-12 mb-4">
+        <div class="card shadow h-100">
+            <div class="card-header bg-success text-white text-center">
+                <h5> <strong>Datos de Contacto</strong></h5>
+            </div>
+            <div class="card-body">
+                <h6 class="font-weight-bold text-gray-800">¿Necesitas ayuda o tienes alguna consulta sobre tu mascota?
+                </h6>
+                <p>En Chucky PB estamos para ayudar a tu mascota. A continuación, te dejamos las formas para
+                    contactarnos:</p>
+
+                <ul>
+                    <li><strong>Email:</strong> <a href="">contacto@chuckypb.com</a></li>
+                    <li><strong>Teléfono:</strong> <a href="">912345678</a></li>
+                </ul>
+
+                <p>Si tienes alguna duda o necesitas soporte, no dudes en ponerte en contacto con nosotros. Estamos
+                    disponibles para ayudarte.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endif %}
+
+<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+<script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+<script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+{% endblock %}

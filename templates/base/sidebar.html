@@ -1,0 +1,175 @@
+{% if user.is_staff %}
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'home' %}">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-dog"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3"><strong>Chucky PB</strong></div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Página principal</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        USUARIOS
+    </div>
+
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'editar_usuarios' user.id %}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Editar Perfil</span></a>
+    </li>
+
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'lista_usuarios' %}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Listado de Usuarios</span></a>
+    </li>
+
+
+     <!-- Heading -->
+     <div class="sidebar-heading">
+        MENÚ
+    </div>
+
+    <!-- Nav Item - Añadir producto -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'productoRegistro' %}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Añadir producto</span></a>
+    </li>
+
+    <!-- Nav Item - Añadir proveedor -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'categoriaRegistro' %}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Añadir categoría</span></a>
+    </li>
+
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'productosData' %}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Listado de Productos</span></a>
+    </li>
+
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'categoriasData' %}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Listado de Categorías</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>
+<!-- End of Sidebar -->
+
+
+{% else %}
+
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'home' %}">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-dog"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3"><strong>Chucky PB</strong></div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Página principal</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        MI CUENTA
+    </div>
+
+
+
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'editar_usuarios' user.id %}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Editar Perfil</span>
+        </a>
+    </li>
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        PANEL
+    </div>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+
+    <!-- Nav Item - Añadir producto -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'productoRegistro' %}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Añadir producto</span></a>
+    </li>
+
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'productosData' %}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Listado de Productos</span></a>
+    </li>
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>
+<!-- End of Sidebar -->
+
+
+{% endif %}

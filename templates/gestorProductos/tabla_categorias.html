@@ -1,0 +1,118 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    Listado de Proveedores
+{% endblock %}
+
+
+{% block contenido %}
+
+{% if user.is_staff %}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-5 text-gray-800 text-center">Listado de Categorías</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="h5 m-0 font-weight-bold text-success">Categorias</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="example" width="100%" cellspacing="0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if categorias %} <!-- Si existe algun proveedor -->
+                        {% for cat in categorias %}
+                        <tr>
+                            <th scope="row">{{cat.id}}</th>
+                            <td>{{cat.nombre}}</td>
+                            <td>{{cat.descripcion}}</td>
+                            <td class="text-center">
+                                <a href="{% url 'editarCategoria' cat.id %}" class="btn btn-warning mr-3"><i class="bi bi-pencil"></i></a>
+                                <a class="btn btn-danger delete-btn" data-url="{% url 'eliminarCategorias' cat.id %}"><i class="bi bi-trash"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+
+<!-- SCRIPT DATATABLE -->
+<script>
+    var table = new DataTable('#example', {
+    language: {
+        url: '{% static "js/es-MX.json" %}',
+        emptyTable: "No hay productos registrados",
+    },
+});
+</script>
+
+<!-- Sweet alert 2 Import -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Sweet alert 2 SCRIPT MODAL -->
+<script>
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const deleteUrl = this.dataset.url;
+
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success mx-4",
+                    cancelButton: "btn btn-danger"
+                },
+                buttonsStyling: false
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: "¿Estás seguro?",
+                text: "¡No podrás revertir esto!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Sí, eliminar",
+                cancelButtonText: "No, cancelar",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = deleteUrl;
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Cancelado",
+                        text: "Tu producto está a salvo :)",
+                        icon: "error"
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+{% endif %}
+{% endblock %}
